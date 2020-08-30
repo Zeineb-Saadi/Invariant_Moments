@@ -39,6 +39,31 @@ def hu_moments(file_path):
     for i in range(7):
          hu[i]=-1*copysign(1.0,H[i])*log10(abs(H[i]))
     return(hu)
-def openfn():
-    filename = filedialog.askopenfilename(title='open')
-    return filename
+def distance_euc(file_path): # to calculate the distance between the moment of the image and the others 
+    
+    distance=[]
+    raw_data = list(collection.find({},projection=exclude_data)
+    imageMoments = list(collection.find({'path':file_path}, projection=exclude_data))
+    df =  pd.DataFrame(raw_data)
+    df1= pd.DataFrame(imageMoments)#the dataframe of the image that you choose
+    j=0
+    for i in df['centrale_moment']:
+        for j in df1['centrale_moment']:
+            dist1 =sqrt(sum([(abs(float(a))-abs(float(b))) ** 2 for a, b in zip(j, i)]))
+            distance[j].append(dist1)
+            j=j+1
+    j=0
+    for i in df['hu_moments']:
+        for j in df1['hu_moments']:
+            dist2 =sqrt(sum([(abs(float(a))-abs(float(b))) ** 2 for a, b in zip(j, i)]))
+            distance[j].append(dist2)
+            j=j+1
+    j=0
+    for i in df['zernike_moment']:
+        for j in df1['zernike_moment']:
+            dist3 =sqrt(sum([(abs(float(a))-abs(float(b))) ** 2 for a, b in zip(j, i)]))
+            distance[j].append(dist3)
+            j=j+1
+        
+
+    return(distance)
