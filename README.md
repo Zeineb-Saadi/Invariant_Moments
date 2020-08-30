@@ -1,4 +1,3 @@
-# Invariant_Moments
 # What's Image Moment?
 Image Moment is a particular weighted average of image pixel intensities, with the help of which we can find some specific properties of an image, like radius, area, centroid etc. To find the centroid of the image, we generally convert it to binary format and then find its center.
 # Central moment 
@@ -20,3 +19,6 @@ In the table below we have 6 images and their Hu moments :
 *	Reflection (between s3 and s4, except the sign of last Hu moment of S4 is flipped
 # Zernike Moments
 We consider the use of Zernike moments (ZMs) for rotation-and scale-invariant classification of images. It is well known that ZMs are rotation-invariant only. We make use of the major benefit of the Fourier-Mellin (FM) transformation, which changes the rotation and the scale into translation. 
+# PS
+Put all the image with their paths and calculated moments in a collection(MongoDB) and use PANDAS DataFrame to extract it.
+After calculating the euclidian distance, sorted and basing on it you choose the most similair images.
